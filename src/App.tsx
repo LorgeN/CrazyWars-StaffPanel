@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Alert from 'react-bootstrap/Alert';
+import LoginForm from "./components/login"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Alert variant="success">
+            Welcome to this temporary little front page!
+            </Alert>
+
+            <Link to="/login" className="nav-link" >
+            Log in
+            </Link>
+          </Route>
+            <Route exact path="/login">
+              <LoginForm />
+            </Route>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;
