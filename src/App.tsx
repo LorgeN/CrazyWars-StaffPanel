@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Alert from 'react-bootstrap/Alert';
-import LoginForm from "./components/login"
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,6 +8,7 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+import StartPage from './components/startpage';
 
 class App extends Component {
   render() {
@@ -25,7 +25,7 @@ class App extends Component {
             </Link>
           </Route>
             <Route exact path="/login">
-              <LoginForm />
+              <StartPage />
             </Route>
         </Switch>
       </Router>
