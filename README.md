@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# CrazyWars Staff Panel
+
+Panel for staff utilities for the [CrazyWars](https://crazywars.me) Minecraft server
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

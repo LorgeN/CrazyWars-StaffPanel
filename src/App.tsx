@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import Alert from 'react-bootstrap/Alert';
+import React, { Component } from "react";
+import Alert from "react-bootstrap/Alert";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
   useRouteMatch,
-  useParams
+  useParams,
 } from "react-router-dom";
-import StartPage from './components/startpage';
+import StartPage from "./components/startpage";
 
 class App extends Component {
   render() {
@@ -16,17 +16,8 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Alert variant="success">
-            Welcome to this temporary little front page!
-            </Alert>
-
-            <Link to="/login" className="nav-link" >
-            Log in
-            </Link>
+            <StartPage />
           </Route>
-            <Route exact path="/login">
-              <StartPage />
-            </Route>
         </Switch>
       </Router>
     );
