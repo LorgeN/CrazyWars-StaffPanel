@@ -1,6 +1,6 @@
 import axios from "axios";
 import {API_URL} from "./environment"
-import { User } from "../models/user";
+import { User, Rank } from "../models/user";
 
 const USER_ITEM_KEY = "user"
 
@@ -16,6 +16,15 @@ class AuthenticationService {
 
     logout(): void {
         localStorage.removeItem(USER_ITEM_KEY)    
+    }
+
+    hasAccess(rank: Rank): boolean {
+        const user = this.getCurrentUser();
+        if (!user) {
+            throw new Error("Not authenticated!");
+        }
+
+        return user.roles.indexOf(rank) > -1;
     }
 
     getCurrentUser(): User | null {
