@@ -3,29 +3,19 @@ import AuthenticationService from "../../core/auth";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import "./index.css";
-import { BasicButton, CenteredRow, FloatContainer } from "../styled";
+import {
+  BasicButton,
+  CenteredRow,
+  FloatContainer,
+  LoadingSpinner,
+} from "../styled";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Spinner from "react-bootstrap/Spinner";
 import { useSessionContext } from "../../context/session";
 import { useHistory, useLocation } from "react-router-dom";
 import { Lock } from "react-bootstrap-icons";
 import { CopyrightNotice } from "../copyright";
-
-const LoadingSpinner: FunctionComponent = () => {
-  return (
-    <Spinner
-      as="span"
-      animation="border"
-      size="sm"
-      role="status"
-      aria-hidden="true"
-    >
-      <span className="sr-only">Logging in...</span>
-    </Spinner>
-  );
-};
 
 export const LoginForm: FunctionComponent = () => {
   const [username, setUsername] = useState<string | undefined>(undefined);

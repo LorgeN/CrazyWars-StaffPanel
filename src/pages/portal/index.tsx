@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from "react";
 import { Dashboard } from "../../components/dashboard";
-import { Rank, ALL_RANKS } from "../../models/user";
+import { ALL_RANKS } from "../../core/models/user";
 import AuthenticationService from "../../core/auth";
+import { Breadcrumb } from "react-bootstrap";
 
 export const Portal: FunctionComponent = () => {
   const renderRanks = () => {
@@ -16,6 +17,10 @@ export const Portal: FunctionComponent = () => {
 
   return (
     <Dashboard>
+      <Breadcrumb>
+        <Breadcrumb.Item active>Home</Breadcrumb.Item>
+      </Breadcrumb>
+
       <h3 className="text-center">Congratulations!</h3>
       <p className="text-center">You are logged in!</p>
 

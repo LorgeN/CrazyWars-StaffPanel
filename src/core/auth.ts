@@ -1,13 +1,12 @@
-import axios from "axios";
-import {API_URL} from "./environment"
-import { User, Rank } from "../models/user";
+import {client} from "./client"
+import { User, Rank } from "./models/user";
 
 const USER_JWT_TOKEN_KEY = "jwt";
 const USER_ITEM_KEY = "user";
 
 class AuthenticationService {
     constructor() {
-        axios.interceptors.request.use((config) => {
+        client.interceptors.request.use((config) => {
             const token = this.getAuthenticationToken();
             if (token) {
                 config.headers.Authorization = "Bearer " + token;
@@ -18,7 +17,7 @@ class AuthenticationService {
     }
 
     async login(username: string, password: string, remember: boolean): Promise<User> {
-        const response = await axios.post(`${API_URL}/auth/signin`, { username, password });
+        const response = await client.post("/auth/signin", { username, password });
         if (response.data.accessToken) {
             sessionStorage.setItem(USER_ITEM_KEY, JSON.stringify(response.data));
 
@@ -36,7 +35,7 @@ class AuthenticationService {
             throw new Error("Not authenticated!");
         }
 
-        const response = await axios.get(`${API_URL}/auth/self`);
+        const response = await client.get("/auth/self");
         if (response.data.accessToken) {
             sessionStorage.setItem(USER_ITEM_KEY, JSON.stringify(response.data));
             this.setStoredToken(response.data.accessToken);
@@ -61,10 +60,11 @@ class AuthenticationService {
     getAuthenticationToken(): string | null {
         const user = this.getCurrentUser();
         if (!user) {
+            console.log("Using stored token!");
             return this.getStoredToken();
         }
 
-        return user.token;
+        return user.accessToken;
     }
 
     hasAccess(rank: Rank): boolean {

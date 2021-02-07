@@ -1,5 +1,33 @@
-import { Session, useProviderValue } from "../models/session";
-import React, { FunctionComponent, createContext, useContext } from "react";
+import { Session } from "../core/models/session";
+import React, {
+  FunctionComponent,
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+} from "react";
+import AuthenticationService from "../core/auth";
+import { User } from "../core/models/user";
+
+export const useProviderValue = (): Session => {
+  const [user, setUser] = useState<User | null>(
+    AuthenticationService.getCurrentUser()
+  );
+  const [redirectPath, setRedirectPath] = useState<string | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    if (user || !AuthenticationService.getStoredToken()) {
+      return;
+    }
+
+    AuthenticationService.updateUser().then((user) => setUser(user));
+  });
+
+  let isAuthenticated = !!user;
+  return { isAuthenticated, user, redirectPath, setUser, setRedirectPath };
+};
 
 const SessionContext = createContext<Session | undefined>(undefined);
 SessionContext.displayName = "SessionContext";

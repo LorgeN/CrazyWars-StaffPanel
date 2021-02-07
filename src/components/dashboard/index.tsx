@@ -8,6 +8,8 @@ import { useLocation } from "react-router-dom";
 import { LogOutButton } from "../logout";
 import { CenteredRow } from "../styled";
 import { CopyrightNotice } from "../copyright";
+import { SimplePlayerCard } from "../player";
+import PlayerAPI from "../../core/api/player";
 
 export type SidebarItemProps = {
   href: string;
@@ -72,8 +74,8 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({
   children,
 }: DashboardProps) => {
   return (
-    <Container fluid>
-      <Row>
+    <Container id="page-container" fluid>
+      <Row xs={12}>
         <Col xs={2} id="sidebar-wrapper">
           <Sidebar />
         </Col>

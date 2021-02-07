@@ -1,5 +1,5 @@
 export interface User {
-    readonly token: string,
+    readonly accessToken: string,
     readonly type: string,
     readonly id: number,
     readonly username: string,

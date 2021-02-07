@@ -3,7 +3,22 @@ import styled from "styled-components";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
+import Spinner from "react-bootstrap/Spinner";
+
+export const LoadingSpinner: FunctionComponent = (props) => {
+  return (
+    <Spinner
+      as="span"
+      animation="border"
+      size="sm"
+      role="status"
+      aria-hidden="true"
+    >
+      <span className="sr-only">{props.children}</span>
+    </Spinner>
+  );
+};
 
 export const FloatContainer = styled(Container)`
   border-radius: 5px;
@@ -21,17 +36,6 @@ export interface CenterInContainerProps {
   span?: number;
   children?: React.ReactNode;
 }
-
-export const CenterInContainer: FunctionComponent<CenterInContainerProps> = ({
-  span = 3,
-  children,
-}: CenterInContainerProps) => {
-  return (
-    <Row>
-      <Col xs={{ span: span * 2, offset: 6 - span }}>{children}</Col>
-    </Row>
-  );
-};
 
 export const BasicButton = styled(Button)`
   margin-bottom: 5px;
