@@ -1,7 +1,6 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import AuthenticationService from "../../core/auth";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import "./index.css";
 import { BasicButton, CenterInContainer, FloatContainer } from "../styled";
