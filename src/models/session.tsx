@@ -1,6 +1,6 @@
 import { User } from "./user";
 import AuthenticationService from "../core/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export interface Session {
   isAuthenticated: boolean;
@@ -17,6 +17,14 @@ export const useProviderValue = (): Session => {
   const [redirectPath, setRedirectPath] = useState<string | undefined>(
     undefined
   );
+
+  useEffect(() => {
+    if (user || !AuthenticationService.getStoredKey()) {
+      return;
+    }
+
+    AuthenticationService.updateUser().then((user) => setUser(user));
+  });
 
   let isAuthenticated = !!user;
   return { isAuthenticated, user, redirectPath, setUser, setRedirectPath };
