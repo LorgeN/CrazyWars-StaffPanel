@@ -2,8 +2,11 @@ import React, { FunctionComponent } from "react";
 import Button from "react-bootstrap/Button";
 import { Link, useHistory } from "react-router-dom";
 import { BasicPage } from "../../components/background";
-import { FloatContainer, CenterInContainer } from "../../components/styled";
-import "./index.css";
+import {
+  FloatContainer,
+  CenterInContainer,
+  BasicButton,
+} from "../../components/styled";
 
 export const NotFound: FunctionComponent = () => {
   const history = useHistory();
@@ -16,13 +19,9 @@ export const NotFound: FunctionComponent = () => {
         <p className="text-center">Page not found!</p>
 
         <CenterInContainer>
-          <Button
-            id="notfound-redirect-button"
-            variant="primary"
-            onClick={() => history.push("/")}
-          >
+          <BasicButton variant="primary" onClick={() => history.push("/login")}>
             Log In
-          </Button>
+          </BasicButton>
         </CenterInContainer>
       </FloatContainer>
     </BasicPage>

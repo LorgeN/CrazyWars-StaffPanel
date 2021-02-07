@@ -4,10 +4,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { SessionContextProvider } from "./context/session";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SessionContextProvider>
+      <App />
+    </SessionContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

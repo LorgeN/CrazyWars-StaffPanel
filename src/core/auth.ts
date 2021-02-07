@@ -1,20 +1,16 @@
 import axios from "axios";
 import {API_URL} from "./environment"
+import { User } from "../models/user";
 
 const USER_ITEM_KEY = "user"
 
-interface User {
-    readonly token: string,
-    readonly type: string,
-    readonly id: number,
-    readonly username: string,
-    readonly roles: ReadonlyArray<string>
-}
-
 class AuthenticationService {
-    async login(username: string, password: string): Promise<User> {
-        const response = await axios.post(`${API_URL}/signin`, { username, password });
-        if (response.data.accessToken) {
+    async login(username: string, password: string, remember: boolean): Promise<User> {
+        const response = await axios.post(`${API_URL}/auth/signin`, { username, password });
+        console.log("RESPONSE: " + JSON.stringify(response.data));
+        console.log("REMEMBER: " + remember);
+        if (response.data.accessToken && remember) {
+            console.log("HELLO!")
             localStorage.setItem(USER_ITEM_KEY, JSON.stringify(response.data));
         }
     

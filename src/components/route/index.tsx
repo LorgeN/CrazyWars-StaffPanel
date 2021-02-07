@@ -15,7 +15,8 @@ export const ProtectedRoute: FunctionComponent<ProtectedRouteProps> = (
 
   let redirectPath = props.redirectPathOnAuthentication;
   if (!props.isAuthenticated) {
-    props.setRedirectPathOnAuthentication(currentLocation.pathname);
+    let pathname = currentLocation.pathname;
+    props.setRedirectPathOnAuthentication(pathname);
     redirectPath = props.authenticationPath;
   }
 

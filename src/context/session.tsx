@@ -1,13 +1,13 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { initialSession, Session } from "../models/session";
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 export const SessionContext = createContext<
   [Session, (session: Session) => void]
 >([initialSession, () => {}]);
 export const useSessionContext = () => useContext(SessionContext);
 
-export const SessionContextProvider: React.FC = (props) => {
+export const SessionContextProvider: FunctionComponent = (props) => {
   const [sessionState, setSessionState] = useState(initialSession);
   const defaultSessionContext: [Session, typeof setSessionState] = [
     sessionState,

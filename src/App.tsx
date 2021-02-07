@@ -1,12 +1,5 @@
 import React, { FunctionComponent } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { StartPage } from "./pages/login";
 import { Portal } from "./pages/portal";
 import { NotFound } from "./pages/notfound";
@@ -25,7 +18,7 @@ const App: FunctionComponent = () => {
 
   const defaultProtectedRouteProps: ProtectedRouteProps = {
     isAuthenticated: !!sessionContext.isAuthenticated,
-    authenticationPath: "/",
+    authenticationPath: "/login",
     redirectPathOnAuthentication:
       sessionContext.redirectPathOnAuthentication || "",
     setRedirectPathOnAuthentication,
@@ -36,11 +29,11 @@ const App: FunctionComponent = () => {
       <Switch>
         <ProtectedRoute
           {...defaultProtectedRouteProps}
-          path="/panel"
+          path="/"
           component={Portal}
           exact
         />
-        <Route path="/" component={StartPage} exact />
+        <Route path="/login" component={StartPage} exact />
         <Route path="/" component={NotFound} />
       </Switch>
     </Router>

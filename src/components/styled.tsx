@@ -2,6 +2,7 @@ import Container from "react-bootstrap/Container";
 import styled from "styled-components";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 export const FloatContainer = styled(Container)`
   border-radius: 5px;
@@ -17,3 +18,8 @@ export const CenterInContainer = (props: any) => {
     </Row>
   );
 };
+
+export const BasicButton = styled(Button)`
+  width: 100%;
+  margin-bottom: 5px;
+`;
