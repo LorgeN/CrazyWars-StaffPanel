@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import "./index.css";
-import { FloatContainer } from "../styled";
+import { BasicButton, CenterInContainer, FloatContainer } from "../styled";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -115,27 +115,26 @@ export const LoginForm: FunctionComponent = () => {
             />
           </Form.Group>
 
-          <Form.Group controlId="formRememberMe">
-            <Form.Check
-              type="checkbox"
-              onClick={() => setRememberMe(!rememberMe)}
-              label="Remember Me"
-            />
-          </Form.Group>
+          <Row className="login-row">
+            <Form.Group controlId="formRememberMe">
+              <Form.Check
+                type="checkbox"
+                onClick={() => setRememberMe(!rememberMe)}
+              />
+            </Form.Group>
+            <p>Remember me</p>
+          </Row>
         </Form>
 
-        <Row>
-          <Col xs={{ span: 5, offset: 3 }}>
-            <Button
-              id="login-submit-button"
-              variant="primary"
-              disabled={loading}
-              onClick={(e) => handleLogin()}
-            >
-              {loading ? <LoadingSpinner /> : "Log In"}
-            </Button>
-          </Col>
-        </Row>
+        <CenterInContainer>
+          <BasicButton
+            variant="primary"
+            disabled={loading}
+            onClick={handleLogin}
+          >
+            {loading ? <LoadingSpinner /> : "Log In"}
+          </BasicButton>
+        </CenterInContainer>
       </FloatContainer>
 
       <Row className="login-row">

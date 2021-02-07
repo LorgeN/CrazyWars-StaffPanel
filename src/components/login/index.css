@@ -11,8 +11,7 @@
   background-color: rgb(255, 255, 255);
 }
 
-#login-submit-button {
-  float: none;
-  margin: 0 auto;
-  width: 100%;
+#formRememberMe {
+  margin-left: -0.25rem;
+  margin-right: 0.25rem;
 }

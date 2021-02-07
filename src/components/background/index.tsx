@@ -21,10 +21,6 @@ export const ParticleBackground: FunctionComponent = () => {
         interactivity: {
           detectsOn: "window",
           events: {
-            onClick: {
-              enable: true,
-              mode: "push",
-            },
             onHover: {
               enable: true,
               mode: "repulse",
@@ -37,9 +33,6 @@ export const ParticleBackground: FunctionComponent = () => {
               duration: 2,
               opacity: 0.8,
               size: 40,
-            },
-            push: {
-              quantity: 4,
             },
             repulse: {
               distance: 100,
