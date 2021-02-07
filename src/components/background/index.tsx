@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import logo from "../../static/logo.png";
 import "./index.css";
+import { CenteredRow } from "../styled";
 
 export const ParticleBackground: FunctionComponent = () => {
   return (
@@ -98,15 +99,11 @@ export const BasicPage: FunctionComponent = (props) => {
         }}
       >
         <Container id="basic-background" fluid>
-          <Row>
-            <Col xs={{ offset: 5 }}>
-              <Image id="basic-logo" src={logo} />
-            </Col>
-          </Row>
+          <CenteredRow>
+            <Image id="basic-logo" src={logo} />
+          </CenteredRow>
 
-          <Row>
-            <Col xs={{ span: 2, offset: 5 }}>{props.children}</Col>
-          </Row>
+          <CenteredRow>{props.children}</CenteredRow>
         </Container>
       </div>
       <ParticleBackground />

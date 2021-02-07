@@ -12,6 +12,11 @@ export const FloatContainer = styled(Container)`
   background-color: white;
 `;
 
+export const CenteredRow = styled(Row)`
+  align-items: center;
+  justify-content: center;
+`;
+
 export interface CenterInContainerProps {
   span?: number;
   children?: React.ReactNode;
@@ -29,6 +34,5 @@ export const CenterInContainer: FunctionComponent<CenterInContainerProps> = ({
 };
 
 export const BasicButton = styled(Button)`
-  width: 100%;
   margin-bottom: 5px;
 `;

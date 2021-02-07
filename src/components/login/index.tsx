@@ -3,7 +3,7 @@ import AuthenticationService from "../../core/auth";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import "./index.css";
-import { BasicButton, CenterInContainer, FloatContainer } from "../styled";
+import { BasicButton, CenteredRow, FloatContainer } from "../styled";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -125,7 +125,7 @@ export const LoginForm: FunctionComponent = () => {
           </Row>
         </Form>
 
-        <CenterInContainer>
+        <CenteredRow>
           <BasicButton
             variant="primary"
             disabled={loading}
@@ -133,7 +133,7 @@ export const LoginForm: FunctionComponent = () => {
           >
             {loading ? <LoadingSpinner /> : "Log In"}
           </BasicButton>
-        </CenterInContainer>
+        </CenteredRow>
       </FloatContainer>
 
       <Row className="login-row">

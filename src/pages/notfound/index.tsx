@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 import { BasicPage } from "../../components/background";
 import {
   FloatContainer,
-  CenterInContainer,
   BasicButton,
+  CenteredRow,
 } from "../../components/styled";
 import { useSessionContext } from "../../context/session";
 
@@ -22,16 +22,16 @@ export const NotFound: FunctionComponent = () => {
 
   return (
     <BasicPage>
-      <FloatContainer>
+      <FloatContainer style={{ width: "400px" }}>
         <br />
         <h1 className="text-center">404</h1>
         <p className="text-center">Page not found!</p>
 
-        <CenterInContainer>
+        <CenteredRow>
           <BasicButton variant="primary" onClick={goBack}>
-            {session.isAuthenticated ? "Go Back" : "Log In"}
+            {session.isAuthenticated ? "Go Back" : "Go to login"}
           </BasicButton>
-        </CenterInContainer>
+        </CenteredRow>
       </FloatContainer>
     </BasicPage>
   );

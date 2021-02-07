@@ -8,10 +8,11 @@
 
 #basic-logo {
   width: 300px;
+  margin-left: 20px;
   height: auto;
-  margin-left: 10px;
 }
 
 #basic-background {
+  align-content: center;
   padding-top: 100px;
 }
