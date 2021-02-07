@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Server } from "../../models/server";
+import { Server } from "../models/server";
 
 export type ServerProps = {
   server: Server;

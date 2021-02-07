@@ -7,6 +7,7 @@ import { House, People, Book } from "react-bootstrap-icons";
 import { useLocation } from "react-router-dom";
 import { LogOutButton } from "../logout";
 import { CenteredRow } from "../styled";
+import { CopyrightNotice } from "../copyright";
 
 export type SidebarItemProps = {
   href: string;
@@ -50,9 +51,15 @@ export const Sidebar: FunctionComponent = (props) => {
         <b>Punishments</b>
       </SidebarItem>
 
-      <CenteredRow id="sidebar-footer">
-        <LogOutButton />
-      </CenteredRow>
+      <div id="sidebar-footer">
+        <CenteredRow>
+          <LogOutButton />
+        </CenteredRow>
+
+        <CenteredRow>
+          <CopyrightNotice />
+        </CenteredRow>
+      </div>
     </Nav>
   );
 };

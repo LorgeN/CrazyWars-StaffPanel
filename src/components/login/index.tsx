@@ -11,6 +11,7 @@ import Spinner from "react-bootstrap/Spinner";
 import { useSessionContext } from "../../context/session";
 import { useHistory, useLocation } from "react-router-dom";
 import { Lock } from "react-bootstrap-icons";
+import { CopyrightNotice } from "../copyright";
 
 const LoadingSpinner: FunctionComponent = () => {
   return (
@@ -143,6 +144,10 @@ export const LoginForm: FunctionComponent = () => {
           >
             {loading ? <LoadingSpinner /> : "Log In"}
           </BasicButton>
+        </CenteredRow>
+
+        <CenteredRow>
+          <CopyrightNotice />
         </CenteredRow>
       </FloatContainer>
 
