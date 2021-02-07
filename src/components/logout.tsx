@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from "react";
 import { useHistory } from "react-router-dom";
-import { BasicButton } from "../../components/styled";
-import { useSessionContext } from "../../context/session";
-import AuthenticationService from "../../core/auth";
+import { BasicButton } from "./styled";
+import { useSessionContext } from "../context/session";
+import AuthenticationService from "../core/auth";
 
 export const LogOutButton: FunctionComponent = () => {
   const session = useSessionContext();
