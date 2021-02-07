@@ -3,30 +3,23 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import logo from "../../static/logo.png";
 import "./index.css";
-import { House } from "react-bootstrap-icons";
-import { useHistory } from "react-router-dom";
+import { House, People, Book } from "react-bootstrap-icons";
+import { useLocation } from "react-router-dom";
 
 export type SidebarItemProps = {
   href: string;
-  selected?: boolean;
 };
 
 export const SidebarItem: FunctionComponent<SidebarItemProps> = (props) => {
-  const history = useHistory();
+  const location = useLocation();
 
-  const onClick = () => {
-    if (props.selected) {
-      return;
-    }
-
-    history.push(props.href);
-  };
+  let selected = props.href === location.pathname;
 
   return (
     <Nav.Item>
       <Nav.Link
-        className={props.selected ? "sidebar-item-selected" : "sidebar-item"}
-        onSelect={onClick}
+        className={selected ? "sidebar-item-selected" : "sidebar-item"}
+        href={selected ? undefined : props.href}
       >
         {props.children}
       </Nav.Link>
@@ -44,9 +37,19 @@ export const Sidebar: FunctionComponent = (props) => {
       <div className="sidebar-sticky"></div>
       <Image id="sidebar-logo" src={logo} />
 
-      <SidebarItem href="/" selected>
+      <SidebarItem href="/">
         <House className="sidebar-icon" size={24} />
         <b>Home</b>
+      </SidebarItem>
+
+      <SidebarItem href="/players">
+        <People className="sidebar-icon" size={24} />
+        <b>Players</b>
+      </SidebarItem>
+
+      <SidebarItem href="/punishments">
+        <Book className="sidebar-icon" size={24} />
+        <b>Punishments</b>
       </SidebarItem>
     </Nav>
   );

@@ -16,8 +16,6 @@ const App: FunctionComponent = () => {
     setRedirectPathOnAuthentication: session.setRedirectPath,
   };
 
-  console.log(session);
-
   return (
     <Router>
       <Switch>

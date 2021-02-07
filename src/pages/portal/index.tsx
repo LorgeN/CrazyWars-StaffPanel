@@ -7,7 +7,7 @@ export const Portal: FunctionComponent = () => {
   const renderRanks = () => {
     return ALL_RANKS.map((rank) => {
       return (
-        <p>
+        <p key={rank}>
           <b>{rank}:</b> {AuthenticationService.hasAccess(rank) ? "Yes" : "No"}
         </p>
       );
