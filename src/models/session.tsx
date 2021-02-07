@@ -19,7 +19,7 @@ export const useProviderValue = (): Session => {
   );
 
   useEffect(() => {
-    if (user || !AuthenticationService.getStoredKey()) {
+    if (user || !AuthenticationService.getStoredToken()) {
       return;
     }
 
