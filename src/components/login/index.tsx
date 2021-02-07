@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import AuthenticationService from "../../core/auth";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -11,6 +11,7 @@ import Col from "react-bootstrap/Col";
 import Spinner from "react-bootstrap/Spinner";
 import { useSessionContext } from "../../context/session";
 import { useHistory, useLocation } from "react-router-dom";
+import { Lock } from "react-bootstrap-icons";
 
 const LoadingSpinner: FunctionComponent = () => {
   return (
@@ -27,13 +28,15 @@ const LoadingSpinner: FunctionComponent = () => {
 };
 
 export const LoginForm: FunctionComponent = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [showError, setShowError] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [sessionContext, updateSessionContext] = useSessionContext();
+  const [username, setUsername] = useState<string | undefined>(undefined);
+  const [password, setPassword] = useState<string | undefined>(undefined);
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined
+  );
+  const [showError, setShowError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const session = useSessionContext();
   const history = useHistory();
   const location = useLocation();
 
@@ -54,22 +57,17 @@ export const LoginForm: FunctionComponent = () => {
 
     AuthenticationService.login(username, password, rememberMe)
       .then((user) => {
-        setLoading(false);
-        updateSessionContext({
-          ...sessionContext,
-          isAuthenticated: true,
-          user: user,
-        });
+        session.setUser(user);
 
         if (
-          !sessionContext.redirectPathOnAuthentication ||
-          sessionContext.redirectPathOnAuthentication === location.pathname
+          !session.redirectPath ||
+          session.redirectPath === location.pathname
         ) {
           history.push("/");
           return;
         }
 
-        history.push(sessionContext.redirectPathOnAuthentication);
+        history.push(session.redirectPath as string);
       })
       .catch((error) => {
         if (error.response.status === 401) {
@@ -92,9 +90,14 @@ export const LoginForm: FunctionComponent = () => {
   return (
     <Container id="login-container" fluid>
       <FloatContainer className="login-row" id="login-form" fluid>
-        <p style={{ marginLeft: "5px" }}>
+        <p className="text-center">
+          <Lock color="#0077ff" size={48} />
+        </p>
+
+        <p className="text-center">
           <b>CrazyWars Staff Panel</b>
         </p>
+
         <Form>
           <Form.Group controlId="formUsername">
             <Form.Control

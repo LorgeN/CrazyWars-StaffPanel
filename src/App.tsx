@@ -7,22 +7,16 @@ import ProtectedRoute, { ProtectedRouteProps } from "./components/route";
 import { useSessionContext } from "./context/session";
 
 const App: FunctionComponent = () => {
-  const [sessionContext, updateSessionContext] = useSessionContext();
-
-  const setRedirectPathOnAuthentication = (path: string) => {
-    updateSessionContext({
-      ...sessionContext,
-      redirectPathOnAuthentication: path,
-    });
-  };
+  const session = useSessionContext();
 
   const defaultProtectedRouteProps: ProtectedRouteProps = {
-    isAuthenticated: !!sessionContext.isAuthenticated,
+    isAuthenticated: session.isAuthenticated,
     authenticationPath: "/login",
-    redirectPathOnAuthentication:
-      sessionContext.redirectPathOnAuthentication || "",
-    setRedirectPathOnAuthentication,
+    redirectPathOnAuthentication: session.redirectPath || "/",
+    setRedirectPathOnAuthentication: session.setRedirectPath,
   };
+
+  console.log(session);
 
   return (
     <Router>

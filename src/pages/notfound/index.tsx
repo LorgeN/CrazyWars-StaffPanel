@@ -1,15 +1,24 @@
 import React, { FunctionComponent } from "react";
-import Button from "react-bootstrap/Button";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { BasicPage } from "../../components/background";
 import {
   FloatContainer,
   CenterInContainer,
   BasicButton,
 } from "../../components/styled";
+import { useSessionContext } from "../../context/session";
 
 export const NotFound: FunctionComponent = () => {
+  const session = useSessionContext();
   const history = useHistory();
+
+  const goBack = () => {
+    if (session.isAuthenticated) {
+      history.push("/");
+    } else {
+      history.push("/login");
+    }
+  };
 
   return (
     <BasicPage>
@@ -19,8 +28,8 @@ export const NotFound: FunctionComponent = () => {
         <p className="text-center">Page not found!</p>
 
         <CenterInContainer>
-          <BasicButton variant="primary" onClick={() => history.push("/login")}>
-            Log In
+          <BasicButton variant="primary" onClick={goBack}>
+            {session.isAuthenticated ? "Go Back" : "Log In"}
           </BasicButton>
         </CenterInContainer>
       </FloatContainer>

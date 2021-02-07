@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { FunctionComponent } from "react";
 
 export const FloatContainer = styled(Container)`
   border-radius: 5px;
@@ -11,10 +12,18 @@ export const FloatContainer = styled(Container)`
   background-color: white;
 `;
 
-export const CenterInContainer = (props: any) => {
+export interface CenterInContainerProps {
+  span?: number;
+  children?: React.ReactNode;
+}
+
+export const CenterInContainer: FunctionComponent<CenterInContainerProps> = ({
+  span = 3,
+  children,
+}: CenterInContainerProps) => {
   return (
     <Row>
-      <Col xs={{ span: 6, offset: 3 }}>{props.children}</Col>
+      <Col xs={{ span: span * 2, offset: 6 - span }}>{children}</Col>
     </Row>
   );
 };

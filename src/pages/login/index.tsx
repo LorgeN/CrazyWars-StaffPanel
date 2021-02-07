@@ -1,27 +1,13 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import { LoginForm } from "../../components/login";
 import { BasicPage } from "../../components/background";
 import { useSessionContext } from "../../context/session";
-import { Redirect, useHistory } from "react-router-dom";
-import AuthenticationService from "../../core/auth";
+import { Redirect } from "react-router-dom";
 
 export const StartPage: FunctionComponent = () => {
-  const [sessionContext, updateSessionContext] = useSessionContext();
+  const session = useSessionContext();
 
-  useEffect(() => {
-    const currentUser = AuthenticationService.getCurrentUser();
-    if (!currentUser) {
-      return;
-    }
-
-    updateSessionContext({
-      ...sessionContext,
-      isAuthenticated: true,
-      user: currentUser,
-    });
-  });
-
-  if (sessionContext.isAuthenticated) {
+  if (session.isAuthenticated) {
     return <Redirect to="/" />;
   }
 

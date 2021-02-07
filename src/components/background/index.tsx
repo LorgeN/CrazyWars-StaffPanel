@@ -101,6 +101,7 @@ export const BasicPage: FunctionComponent = (props) => {
           position: "absolute",
           height: "100%",
           width: "100%",
+          zIndex: 10,
         }}
       >
         <Container id="basic-background" fluid>

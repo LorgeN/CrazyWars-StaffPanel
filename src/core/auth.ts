@@ -7,10 +7,7 @@ const USER_ITEM_KEY = "user"
 class AuthenticationService {
     async login(username: string, password: string, remember: boolean): Promise<User> {
         const response = await axios.post(`${API_URL}/auth/signin`, { username, password });
-        console.log("RESPONSE: " + JSON.stringify(response.data));
-        console.log("REMEMBER: " + remember);
         if (response.data.accessToken && remember) {
-            console.log("HELLO!")
             localStorage.setItem(USER_ITEM_KEY, JSON.stringify(response.data));
         }
     
