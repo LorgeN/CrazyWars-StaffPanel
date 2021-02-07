@@ -39,6 +39,14 @@ export const LoginForm: FunctionComponent = () => {
   const history = useHistory();
   const location = useLocation();
 
+  const onKeyPress = (e: any) => {
+    if (e.code !== "Enter") {
+      return;
+    }
+
+    handleLogin();
+  };
+
   const handleLogin = () => {
     if (loading) {
       return;
@@ -103,6 +111,7 @@ export const LoginForm: FunctionComponent = () => {
               type="username"
               placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
+              onKeyPress={onKeyPress}
             />
           </Form.Group>
 
@@ -111,6 +120,7 @@ export const LoginForm: FunctionComponent = () => {
               type="password"
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
+              onKeyPress={onKeyPress}
             />
           </Form.Group>
 

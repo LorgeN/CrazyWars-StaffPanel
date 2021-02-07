@@ -1,8 +1,6 @@
 import React, { FunctionComponent } from "react";
 import Particles from "react-tsparticles";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import logo from "../../static/logo.png";
 import "./index.css";
@@ -95,7 +93,7 @@ export const BasicPage: FunctionComponent = (props) => {
           position: "absolute",
           height: "100%",
           width: "100%",
-          zIndex: 10,
+          zIndex: 1,
         }}
       >
         <Container id="basic-background" fluid>
