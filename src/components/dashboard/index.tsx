@@ -5,6 +5,8 @@ import logo from "../../static/logo.png";
 import "./index.css";
 import { House, People, Book } from "react-bootstrap-icons";
 import { useLocation } from "react-router-dom";
+import { LogOutButton } from "../logout";
+import { CenteredRow } from "../styled";
 
 export type SidebarItemProps = {
   href: string;
@@ -29,11 +31,7 @@ export const SidebarItem: FunctionComponent<SidebarItemProps> = (props) => {
 
 export const Sidebar: FunctionComponent = (props) => {
   return (
-    <Nav
-      className="d-none d-md-block sidebar"
-      defaultActiveKey="/"
-      onSelect={(selectedKey) => console.log(`selected ${selectedKey}`)}
-    >
+    <Nav className="d-none d-md-block sidebar" defaultActiveKey="/">
       <div className="sidebar-sticky"></div>
       <Image id="sidebar-logo" src={logo} />
 
@@ -51,6 +49,10 @@ export const Sidebar: FunctionComponent = (props) => {
         <Book className="sidebar-icon" size={24} />
         <b>Punishments</b>
       </SidebarItem>
+
+      <CenteredRow id="sidebar-footer">
+        <LogOutButton />
+      </CenteredRow>
     </Nav>
   );
 };

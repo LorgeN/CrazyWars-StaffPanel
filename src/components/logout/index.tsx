@@ -15,7 +15,7 @@ export const LogOutButton: FunctionComponent = () => {
   };
 
   return (
-    <BasicButton variant="primary" onClick={() => logOut()}>
+    <BasicButton variant="outline-light" onClick={() => logOut()}>
       Log Out
     </BasicButton>
   );
