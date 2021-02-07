@@ -1,5 +1,7 @@
 import Container from "react-bootstrap/Container";
 import styled from "styled-components";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export const FloatContainer = styled(Container)`
   border-radius: 5px;
@@ -7,3 +9,11 @@ export const FloatContainer = styled(Container)`
   z-index: 10;
   background-color: white;
 `;
+
+export const CenterInContainer = (props: any) => {
+  return (
+    <Row>
+      <Col xs={{ span: 6, offset: 3 }}>{props.children}</Col>
+    </Row>
+  );
+};

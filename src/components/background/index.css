@@ -1,0 +1,15 @@
+#tsparticles {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#basic-logo {
+  width: 300px;
+  height: auto;
+  margin-left: 10px;
+}
+
+#basic-background {
+  padding-top: 100px;
+}
