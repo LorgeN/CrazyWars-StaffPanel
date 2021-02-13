@@ -53,7 +53,7 @@ export const LoginForm: FunctionComponent = () => {
       return;
     }
 
-    AuthenticationService.login(username, password, rememberMe)
+    AuthenticationService.logIn(username, password, rememberMe)
       .then((user) => {
         session.setUser(user);
 

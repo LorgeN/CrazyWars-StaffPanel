@@ -16,7 +16,7 @@ export type SidebarItemProps = {
 export const SidebarItem: FunctionComponent<SidebarItemProps> = (props) => {
   const location = useLocation();
 
-  let selected = props.href === location.pathname;
+  const selected = props.href === location.pathname;
 
   return (
     <Nav.Item>

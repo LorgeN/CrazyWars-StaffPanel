@@ -9,7 +9,7 @@ export const LogOutButton: FunctionComponent = () => {
   const history = useHistory();
 
   const logOut = () => {
-    AuthenticationService.logout();
+    AuthenticationService.logOut();
     session.setUser(null);
     history.push("/login");
   };

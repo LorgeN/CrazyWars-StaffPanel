@@ -7,26 +7,35 @@ import React, {
   useEffect,
 } from "react";
 import AuthenticationService from "../core/auth";
-import { User } from "../core/models/user";
+import { Rank, UserAccessToken } from "../core/models/user";
 
 export const useProviderValue = (): Session => {
-  const [user, setUser] = useState<User | null>(
-    AuthenticationService.getCurrentUser()
-  );
+  const [user, setUser] = useState<UserAccessToken | null>(null);
   const [redirectPath, setRedirectPath] = useState<string | undefined>(
     undefined
   );
 
   useEffect(() => {
-    if (user || !AuthenticationService.getStoredToken()) {
+    if (user || !AuthenticationService.isLoggedIn()) {
       return;
     }
 
-    AuthenticationService.updateUser().then((user) => setUser(user));
+    AuthenticationService.getUserAccess(true).then((user) => setUser(user));
   });
 
-  let isAuthenticated = !!user;
-  return { isAuthenticated, user, redirectPath, setUser, setRedirectPath };
+  const isAuthenticated = !!user;
+  const hasAccess = (claim: Rank) => {
+    return !!user && user.claims.indexOf(claim) > -1;
+  };
+
+  return {
+    isAuthenticated,
+    user,
+    redirectPath,
+    setUser,
+    setRedirectPath,
+    hasAccess,
+  };
 };
 
 const SessionContext = createContext<Session | undefined>(undefined);
@@ -37,7 +46,7 @@ export const SessionContextProvider: FunctionComponent = (props: any) => {
   return <SessionContext.Provider value={value} {...props} />;
 };
 
-export const useSessionContext = () => {
+export const useSessionContext = (): Session => {
   const context = useContext(SessionContext);
   if (context === undefined) {
     throw new Error("useSessionContext must be called within a provider!");
