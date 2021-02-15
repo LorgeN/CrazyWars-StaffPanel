@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import logo from "../../static/logo.png";
 import "./index.css";
-import { CenteredRow } from "../styled";
+import { CenteredRow } from "../Styled";
 
 export const ParticleBackground: FunctionComponent = () => {
   return (

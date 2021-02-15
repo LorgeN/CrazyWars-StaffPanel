@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
-import { LoginForm } from "../../components/login";
-import { BasicPage } from "../../components/background";
-import { useSessionContext } from "../../context/session";
+import { LoginForm } from "../components/LogInForm";
+import { BasicPage } from "../components/Background";
+import { useSessionContext } from "../context/session";
 import { Redirect } from "react-router-dom";
 
 export const StartPage: FunctionComponent = () => {

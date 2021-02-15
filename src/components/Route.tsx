@@ -13,19 +13,17 @@ export const ProtectedRoute: FunctionComponent<ProtectedRouteProps> = (
 ) => {
   const currentLocation = useLocation();
 
-  let redirectPath = props.redirectPathOnAuthentication;
   if (!props.isAuthenticated) {
     const pathname = currentLocation.pathname;
     props.setRedirectPathOnAuthentication(pathname);
-    redirectPath = props.authenticationPath;
+
+    const renderComponent = () => (
+      <Redirect to={{ pathname: props.authenticationPath }} />
+    );
+    return <Route {...props} component={renderComponent} render={undefined} />;
   }
 
-  if (redirectPath !== currentLocation.pathname) {
-    const renderComponent = () => <Redirect to={{ pathname: redirectPath }} />;
-    return <Route {...props} component={renderComponent} render={undefined} />;
-  } else {
-    return <Route {...props} />;
-  }
+  return <Route {...props} />;
 };
 
 export default ProtectedRoute;

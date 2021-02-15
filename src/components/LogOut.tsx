@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { useHistory } from "react-router-dom";
-import { BasicButton } from "./styled";
+import { BasicButton } from "./Styled";
 import { useSessionContext } from "../context/session";
 import AuthenticationService from "../core/auth";
 

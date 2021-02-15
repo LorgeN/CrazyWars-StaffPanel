@@ -1,12 +1,8 @@
 import React, { FunctionComponent } from "react";
 import { useHistory } from "react-router-dom";
-import { BasicPage } from "../../components/background";
-import {
-  FloatContainer,
-  BasicButton,
-  CenteredRow,
-} from "../../components/styled";
-import { useSessionContext } from "../../context/session";
+import { BasicPage } from "../components/Background";
+import { FloatContainer, BasicButton, CenteredRow } from "../components/Styled";
+import { useSessionContext } from "../context/session";
 
 export const NotFound: FunctionComponent = () => {
   const session = useSessionContext();

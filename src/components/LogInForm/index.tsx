@@ -8,14 +8,14 @@ import {
   CenteredRow,
   FloatContainer,
   LoadingSpinner,
-} from "../styled";
+} from "../Styled";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useSessionContext } from "../../context/session";
 import { useHistory, useLocation } from "react-router-dom";
 import { Lock } from "react-bootstrap-icons";
-import { CopyrightNotice } from "../copyright";
+import { CopyrightNotice } from "../Copyright";
 
 export const LoginForm: FunctionComponent = () => {
   const [username, setUsername] = useState<string | undefined>(undefined);

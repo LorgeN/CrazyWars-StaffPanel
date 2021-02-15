@@ -23,7 +23,7 @@ export const useProviderValue = (): Session => {
     AuthenticationService.getUserAccess(true).then((user) => setUser(user));
   });
 
-  const isAuthenticated = !!user;
+  const isAuthenticated = AuthenticationService.isLoggedIn();
   const hasAccess = (claim: Rank) => {
     return !!user && user.claims.indexOf(claim) > -1;
   };

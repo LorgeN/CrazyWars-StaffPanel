@@ -59,7 +59,7 @@ class AuthenticationService {
   }
 
   private setAccessToken(access: string, remember: boolean) {
-    let opts: CookieSetOptions = { path: "/" };
+    let opts: CookieSetOptions = { path: "/", sameSite: "lax" };
 
     if (remember) {
       opts = {

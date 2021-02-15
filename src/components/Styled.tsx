@@ -20,11 +20,49 @@ export const LoadingSpinner: FunctionComponent = (props) => {
   );
 };
 
+export interface FieldDisplayProps {
+  name: string;
+  value: string;
+  line: boolean;
+}
+
+export const FieldDisplay: FunctionComponent<FieldDisplayProps> = ({
+  name,
+  value,
+  line,
+}: FieldDisplayProps) => {
+  return (
+    <>
+      <Row>
+        <Col>
+          <p style={{ margin: "0.5em", color: "rgb(100, 100, 100)" }}>
+            <strong>{name}</strong>
+          </p>
+        </Col>
+        <Col>
+          <p style={{ margin: "0.5em", color: "rgb(50, 50, 50)" }}>{value}</p>
+        </Col>
+      </Row>
+      {line ? <hr style={{ margin: "0" }} /> : null}
+    </>
+  );
+};
+
 export const FloatContainer = styled(Container)`
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   z-index: 10;
   background-color: white;
+`;
+
+export const LeftAlignRow = styled(Row)`
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+export const RightAlignRow = styled(Row)`
+  align-items: center;
+  justify-content: flex-end;
 `;
 
 export const CenteredRow = styled(Row)`

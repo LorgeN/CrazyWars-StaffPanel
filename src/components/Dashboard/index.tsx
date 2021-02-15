@@ -3,11 +3,11 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import logo from "../../static/logo.png";
 import "./index.css";
-import { House, People, Book } from "react-bootstrap-icons";
+import { House, People, Book, Sliders } from "react-bootstrap-icons";
 import { useLocation } from "react-router-dom";
-import { LogOutButton } from "../logout";
-import { CenteredRow } from "../styled";
-import { CopyrightNotice } from "../copyright";
+import { LogOutButton } from "../LogOut";
+import { CenteredRow } from "../Styled";
+import { CopyrightNotice } from "../Copyright";
 
 export type SidebarItemProps = {
   href: string;
@@ -49,6 +49,11 @@ export const Sidebar: FunctionComponent = (props) => {
       <SidebarItem href="/punishments">
         <Book className="sidebar-icon" size={24} />
         <b>Punishments</b>
+      </SidebarItem>
+
+      <SidebarItem href="/profile">
+        <Sliders className="sidebar-icon" size={24} />
+        <b>Profile</b>
       </SidebarItem>
 
       <div id="sidebar-footer">
