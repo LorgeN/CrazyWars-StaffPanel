@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import PlayerAPI from "../core/api/player";
 import { LoadingSpinner } from "../components/Styled";
 import { FullPlayerCard } from "../components/Player";
-import { Breadcrumb } from "react-bootstrap";
+import { Breadcrumb, Container } from "react-bootstrap";
 import { Dashboard } from "../components/Dashboard";
 
 export const Profile: FunctionComponent = () => {
@@ -40,7 +40,7 @@ export const Profile: FunctionComponent = () => {
         <Breadcrumb.Item active>Your Profile</Breadcrumb.Item>
       </Breadcrumb>
 
-      {component}
+      <Container fluid>{component}</Container>
     </Dashboard>
   );
 };

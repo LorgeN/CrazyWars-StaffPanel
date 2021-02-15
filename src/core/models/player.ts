@@ -10,14 +10,15 @@ export interface Player {
   ranks: Record<string, Rank>;
 }
 
-export interface GroupMonthPlaytime extends GroupPlayTime {
-  year: number;
-  month: number;
-}
-
 export interface GroupPlayTime {
   id: string;
   name: string;
   logins: number;
   playtime: number;
+}
+
+export interface PlayerPlaytime {
+  logins: number;
+  playtime: number;
+  groups: Record<string, GroupPlayTime>;
 }
