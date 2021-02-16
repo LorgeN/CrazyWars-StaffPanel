@@ -1,6 +1,6 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import { Col, Container, Image, Tab, Tabs } from "react-bootstrap";
-import { Player } from "../core/models/player";
+import { Player, PlayerPlaytime } from "../core/models/player";
 import { MonthPicker } from "./MonthTabber";
 import {
   CenteredRow,
@@ -8,8 +8,10 @@ import {
   LeftAlignRow,
   FieldDisplay,
   FieldDisplayAccordian,
-  titleCase,
+  formatEnum,
+  millisToHour,
 } from "./Styled";
+import PlayerAPI from "../core/api/player";
 
 export type PlayerCardProps = {
   player: Player;
@@ -57,33 +59,91 @@ export const FullPlayerCard: FunctionComponent<PlayerCardProps> = ({
           {Object.entries(player.ranks).map((rank) => (
             <FieldDisplay
               key={rank[0]}
-              name={titleCase(rank[0])}
-              value={titleCase(rank[1])}
+              name={formatEnum(rank[0])}
+              value={formatEnum(rank[1])}
               line
             />
           ))}
         </FieldDisplayAccordian>
-        <FieldDisplayAccordian name="Playtime" value="0h" line>
-          <Tabs defaultActiveKey="lifetime" id="playtime-tab">
-            <Tab eventKey="lifetime" title="Lifetime">
-              <Container style={{ margin: "10px" }} fluid>
-                <p>Lifetime playtime</p>
-              </Container>
-            </Tab>
-            <Tab eventKey="monthly" title="Monthly">
-              <Container style={{ margin: "10px" }} fluid>
-                <MonthPicker
-                  onMonthChange={(month) => console.log(month)}
-                  onYearChange={(year) => console.log(year)}
-                >
-                  <p>Monthly playtime</p>
-                </MonthPicker>
-              </Container>
-            </Tab>
-          </Tabs>
-        </FieldDisplayAccordian>
+        <PlayerPlaytimeField player={player} />
       </Col>
       {children}
     </LeftAlignRow>
+  );
+};
+
+interface PlayerPlaytimeDisplayProps {
+  playtime: PlayerPlaytime;
+}
+
+const PlayerPlaytimeDisplay: FunctionComponent<PlayerPlaytimeDisplayProps> = ({
+  playtime,
+}: PlayerPlaytimeDisplayProps) => {
+  if (!playtime.groups.length) {
+    return <p>Wow! No playtime at all!</p>;
+  }
+
+  return (
+    <>
+      {playtime.groups.map((group) => (
+        <FieldDisplay
+          key={group.id}
+          name={group.name}
+          value={millisToHour(group.playtime) + "h"}
+        />
+      ))}
+    </>
+  );
+};
+
+export const PlayerPlaytimeField: FunctionComponent<PlayerCardProps> = ({
+  player,
+  children,
+}: PlayerCardProps) => {
+  const [playtime, setPlaytime] = useState<PlayerPlaytime | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    PlayerAPI.getPlaytimeById(player.id)
+      .then((playtime) => {
+        setPlaytime(playtime);
+      })
+      .catch((error) => setPlaytime({ groups: [] }));
+  }, [player.id]);
+
+  const computeHourCount = () => {
+    if (!playtime) {
+      return "Loading...";
+    }
+
+    const global = playtime.groups.filter((group) => group.id === "GLOBAL");
+    if (!global.length) {
+      return "0h";
+    }
+
+    return millisToHour(global[0].playtime) + "h";
+  };
+
+  return (
+    <FieldDisplayAccordian name="Playtime" value={computeHourCount()} line>
+      <Tabs defaultActiveKey="lifetime" id="playtime-tab">
+        <Tab eventKey="lifetime" title="Lifetime">
+          <Container style={{ margin: "10px" }} fluid>
+            {playtime ? <PlayerPlaytimeDisplay playtime={playtime} /> : null}
+          </Container>
+        </Tab>
+        <Tab eventKey="monthly" title="Monthly">
+          <Container style={{ margin: "10px" }} fluid>
+            <MonthPicker
+              onMonthChange={(month) => console.log(month)}
+              onYearChange={(year) => console.log(year)}
+            >
+              <p>Monthly playtime</p>
+            </MonthPicker>
+          </Container>
+        </Tab>
+      </Tabs>
+    </FieldDisplayAccordian>
   );
 };

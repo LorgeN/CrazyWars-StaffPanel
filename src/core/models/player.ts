@@ -1,24 +1,22 @@
 import { Rank } from "./user";
 
 export interface Player {
-  id: number;
-  uuid: string;
-  username: string;
-  avatar: string;
-  bodyRender: string;
-  lastOnline: Date;
-  ranks: Record<string, Rank>;
+  readonly id: number;
+  readonly uuid: string;
+  readonly username: string;
+  readonly avatar: string;
+  readonly bodyRender: string;
+  readonly lastOnline: Date;
+  readonly ranks: Record<string, Rank>;
 }
 
 export interface GroupPlayTime {
-  id: string;
-  name: string;
-  logins: number;
-  playtime: number;
+  readonly id: string;
+  readonly name: string;
+  readonly logins: number;
+  readonly playtime: number;
 }
 
 export interface PlayerPlaytime {
-  logins: number;
-  playtime: number;
-  groups: Record<string, GroupPlayTime>;
+  readonly groups: GroupPlayTime[];
 }

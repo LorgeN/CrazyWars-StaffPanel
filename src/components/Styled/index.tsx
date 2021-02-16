@@ -10,8 +10,8 @@ import { useAccordionToggle } from "react-bootstrap/esm/AccordionToggle";
 import { ChevronDown, ChevronUp } from "react-bootstrap-icons";
 import "./index.css";
 
-export const titleCase = (str: string): string => {
-  const splitStr = str.toLowerCase().split(" ");
+export const formatEnum = (str: string): string => {
+  const splitStr = str.toLowerCase().split("_");
   for (let i = 0; i < splitStr.length; i++) {
     // You do not need to check if i is larger than splitStr length, as your for does that for you
     // Assign it back to the array
@@ -20,6 +20,10 @@ export const titleCase = (str: string): string => {
   }
   // Directly return the joined string
   return splitStr.join(" ");
+};
+
+export const millisToHour = (millis: number): number => {
+  return Math.floor(millis / 3600000);
 };
 
 export const LoadingSpinner: FunctionComponent = (props) => {
