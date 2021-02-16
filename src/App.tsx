@@ -5,7 +5,7 @@ import { Portal } from "./pages/Portal";
 import { NotFound } from "./pages/NotFound";
 import { Profile } from "./pages/Profile";
 import { Punishments } from "./pages/Punishments";
-import { Players } from "./pages/Players";
+import { Players, PlayerView } from "./pages/Players";
 import ProtectedRoute, { ProtectedRouteProps } from "./components/Route";
 import { useSessionContext } from "./context/session";
 
@@ -38,6 +38,12 @@ const App: FunctionComponent = () => {
           {...protectedRouteProps}
           path="/players"
           component={Players}
+          exact
+        />
+        <ProtectedRoute
+          {...protectedRouteProps}
+          path="/players/:id"
+          component={PlayerView}
           exact
         />
         <ProtectedRoute

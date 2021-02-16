@@ -6,24 +6,16 @@ import { Breadcrumb } from "react-bootstrap";
 import { Dashboard } from "../components/Dashboard";
 
 export const Profile: FunctionComponent = () => {
-  const [loaded, setLoaded] = useState<boolean>(false);
   const [component, setComponent] = useState<React.ReactNode>(
     <LoadingSpinner />
   );
 
   useEffect(() => {
-    if (loaded) {
-      return;
-    }
-
     PlayerAPI.getSelf()
       .then((self) => {
         setComponent(<PlayerProfile player={self} self />);
-        setLoaded(true);
       })
       .catch((error) => {
-        setLoaded(true);
-
         setComponent(
           <p>
             <strong>{error.response.status}</strong>
@@ -32,7 +24,7 @@ export const Profile: FunctionComponent = () => {
           </p>
         );
       });
-  });
+  }, []);
 
   return (
     <Dashboard>

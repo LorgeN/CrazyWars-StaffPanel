@@ -82,7 +82,11 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({
           <Sidebar />
         </Col>
         <Col xs={10} id="page-content-wrapper">
-          {children}
+          <div
+            style={{ padding: "20px", maxHeight: "100vh", overflow: "auto" }}
+          >
+            {children}
+          </div>
         </Col>
       </Row>
     </Container>

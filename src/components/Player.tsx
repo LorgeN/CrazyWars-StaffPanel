@@ -136,7 +136,10 @@ export const PlayerPlaytimeField: FunctionComponent<PlayerCardProps> = ({
       .then((playtime) => {
         setPlaytime(playtime);
       })
-      .catch((error) => setPlaytime({ groups: [] }));
+      .catch((error) => {
+        console.log(error);
+        setPlaytime({ groups: [] });
+      });
   }, [player.id]);
 
   const computeHourCount = () => {
@@ -154,25 +157,27 @@ export const PlayerPlaytimeField: FunctionComponent<PlayerCardProps> = ({
 
   return (
     <FieldDisplayAccordian name="Playtime" value={computeHourCount()} line>
-      <Tabs defaultActiveKey="lifetime" id="playtime-tab">
-        <Tab eventKey="lifetime" title="Lifetime">
-          <div style={{ marginTop: "10px", marginBottom: "10px" }}>
-            {playtime ? (
-              <PlayerPlaytimeDisplay playtime={playtime} />
-            ) : (
-              <LoadingSpinner />
-            )}
-          </div>
-        </Tab>
-        <Tab eventKey="monthly" title="Monthly">
-          <div style={{ marginTop: "10px", marginBottom: "10px" }}>
-            <MonthPicker>
-              <PlayerMonthPlaytimeDisplay player={player} />
-            </MonthPicker>
-          </div>
-        </Tab>
-        {children}
-      </Tabs>
+      <div style={{ fontSize: "14px" }}>
+        <Tabs defaultActiveKey="lifetime" id="playtime-tab">
+          <Tab eventKey="lifetime" title="Lifetime">
+            <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+              {playtime ? (
+                <PlayerPlaytimeDisplay playtime={playtime} />
+              ) : (
+                <LoadingSpinner />
+              )}
+            </div>
+          </Tab>
+          <Tab eventKey="monthly" title="Monthly">
+            <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+              <MonthPicker>
+                <PlayerMonthPlaytimeDisplay player={player} />
+              </MonthPicker>
+            </div>
+          </Tab>
+          {children}
+        </Tabs>
+      </div>
     </FieldDisplayAccordian>
   );
 };

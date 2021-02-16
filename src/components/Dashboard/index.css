@@ -1,12 +1,14 @@
 .sidebar {
   min-width: 200px;
   min-height: 100vh !important;
+  z-index: 100;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: #0077ff;
   margin: 0;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
+  overflow: auto;
 }
 
 .sidebar-item {
@@ -45,7 +47,8 @@
 }
 
 #page-content-wrapper {
-  margin-top: 30px;
+  min-width: 0;
+  padding: 0px;
 }
 
 #sidebar-footer {

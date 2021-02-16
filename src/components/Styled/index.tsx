@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import React, { FunctionComponent } from "react";
 import Spinner from "react-bootstrap/Spinner";
+import { Pagination } from "react-bootstrap";
 
 export const formatEnum = (str: string): string => {
   const splitStr = str.toLowerCase().split("_");
@@ -30,6 +31,81 @@ export const LoadingSpinner: FunctionComponent = (props) => {
     >
       <span className="sr-only">{props.children}</span>
     </Spinner>
+  );
+};
+
+export interface StyledPaginationProps {
+  page: number;
+  pages: number;
+  setPage: (page: number) => void;
+}
+
+export const StyledPagination: FunctionComponent<StyledPaginationProps> = ({
+  page,
+  pages,
+  setPage,
+}: StyledPaginationProps) => {
+  const makeFarLeftComponents = () => {
+    return (
+      <>
+        <Pagination.First onClick={() => setPage(1)} disabled={page <= 1} />
+        <Pagination.Prev onClick={() => setPage(1)} disabled={page <= 1} />
+      </>
+    );
+  };
+
+  const makeFarRightComponents = () => {
+    return (
+      <>
+        <Pagination.Next
+          onClick={() => setPage(pages)}
+          disabled={page >= pages}
+        />
+        <Pagination.Last
+          onClick={() => setPage(pages)}
+          disabled={page >= pages}
+        />
+      </>
+    );
+  };
+
+  const makeComponent = (num: number) => {
+    return (
+      <Pagination.Item
+        key={num}
+        onClick={() => setPage(num)}
+        active={num === page}
+      >
+        {num}
+      </Pagination.Item>
+    );
+  };
+
+  const makeCenterComponents = () => {
+    const items = [];
+    if (page <= 5) {
+      for (let num = 1; num <= Math.min(9, pages); num++) {
+        items.push(makeComponent(num));
+      }
+    } else if (page >= pages - 5) {
+      for (let num = Math.max(1, pages - 9); num <= page; num++) {
+        items.push(makeComponent(num));
+      }
+    } else {
+      for (let num = page - 4; num <= page + 4; num++) {
+        items.push(makeComponent(num));
+      }
+    }
+
+    return items;
+  };
+
+  return (
+    <Pagination>
+      {makeFarLeftComponents()}
+      {makeCenterComponents()}
+      {makeFarRightComponents()}
+    </Pagination>
   );
 };
 

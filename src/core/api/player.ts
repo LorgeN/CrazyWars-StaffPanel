@@ -1,5 +1,5 @@
 import { client } from "../client";
-import { Player, PlayerPlaytime } from "../models/player";
+import { Player, PlayerList, PlayerPlaytime } from "../models/player";
 
 class PlayerAPI {
   async getSelf(): Promise<Player> {
@@ -30,6 +30,23 @@ class PlayerAPI {
     const response = await client.get(
       `/player/playtime/${id}/${year}/${month}`
     );
+    return response.data;
+  }
+
+  async getAllPlayers(
+    page: number,
+    perPage = 50,
+    search?: string
+  ): Promise<PlayerList> {
+    let response;
+    if (search) {
+      response = await client.get(
+        `/player?page=${page}&perPage=${perPage}&search=${encodeURI(search)}`
+      );
+    } else {
+      response = await client.get(`/player?page=${page}&perPage=${perPage}`);
+    }
+
     return response.data;
   }
 }

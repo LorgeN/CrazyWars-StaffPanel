@@ -11,6 +11,13 @@ export interface Player {
   readonly panel: boolean;
 }
 
+export interface PlayerList {
+  readonly page: number;
+  readonly perPage: number;
+  readonly pages: number;
+  readonly players: Player[];
+}
+
 export interface GroupPlayTime {
   readonly id: string;
   readonly name: string;
