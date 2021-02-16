@@ -1,3 +1,4 @@
+import { NONAME } from "dns";
 import { client } from "../client";
 import { Player, PlayerPlaytime } from "../models/player";
 
@@ -20,6 +21,15 @@ class PlayerAPI {
   async getPlaytimeById(id: number): Promise<PlayerPlaytime> {
     const response = await client.get(`/player/playtime/${id}`);
     return response.data;
+  }
+
+  async getMonthlyPlaytimeById(
+    id: number,
+    year: number,
+    month: number
+  ): Promise<PlayerPlaytime> {
+    // TODO
+    return { groups: [] };
   }
 }
 
