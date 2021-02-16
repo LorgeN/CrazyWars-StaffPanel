@@ -8,6 +8,7 @@ export interface Player {
   readonly bodyRender: string;
   readonly lastOnline: Date;
   readonly ranks: Record<string, Rank>;
+  readonly panel: boolean;
 }
 
 export interface GroupPlayTime {

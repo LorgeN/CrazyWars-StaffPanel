@@ -54,6 +54,13 @@ class AuthenticationService {
     return !!this.getAccessToken();
   }
 
+  async changePassword(
+    oldPassword: string,
+    newPassword: string
+  ): Promise<void> {
+    await client.post("/auth/password", { oldPassword, newPassword });
+  }
+
   private getAccessToken(): string | null {
     return cookies.get(COOKIE_ACCESS_TOKEN);
   }

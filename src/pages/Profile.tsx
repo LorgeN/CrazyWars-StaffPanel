@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import PlayerAPI from "../core/api/player";
 import { LoadingSpinner } from "../components/Styled";
-import { FullPlayerCard } from "../components/Player";
-import { Breadcrumb, Container } from "react-bootstrap";
+import { PlayerProfile } from "../components/Player";
+import { Breadcrumb } from "react-bootstrap";
 import { Dashboard } from "../components/Dashboard";
 
 export const Profile: FunctionComponent = () => {
@@ -18,7 +18,7 @@ export const Profile: FunctionComponent = () => {
 
     PlayerAPI.getSelf()
       .then((self) => {
-        setComponent(<FullPlayerCard player={self} />);
+        setComponent(<PlayerProfile player={self} self />);
         setLoaded(true);
       })
       .catch((error) => {
@@ -40,7 +40,7 @@ export const Profile: FunctionComponent = () => {
         <Breadcrumb.Item active>Your Profile</Breadcrumb.Item>
       </Breadcrumb>
 
-      <Container fluid>{component}</Container>
+      {component}
     </Dashboard>
   );
 };

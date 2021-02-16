@@ -27,8 +27,10 @@ class PlayerAPI {
     year: number,
     month: number
   ): Promise<PlayerPlaytime> {
-    // TODO
-    return { groups: [] };
+    const response = await client.get(
+      `/player/playtime/${id}/${year}/${month}`
+    );
+    return response.data;
   }
 }
 

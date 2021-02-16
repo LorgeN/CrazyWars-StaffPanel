@@ -19,9 +19,9 @@ export const SidebarItem: FunctionComponent<SidebarItemProps> = (props) => {
   const selected = props.href === location.pathname;
 
   return (
-    <Nav.Item>
+    <Nav.Item className="sidebar-item">
       <Nav.Link
-        className={selected ? "sidebar-item-selected" : "sidebar-item"}
+        className={"sidebar-link" + (selected ? " selected" : "")}
         href={selected ? undefined : props.href}
       >
         {props.children}
@@ -32,8 +32,7 @@ export const SidebarItem: FunctionComponent<SidebarItemProps> = (props) => {
 
 export const Sidebar: FunctionComponent = (props) => {
   return (
-    <Nav className="d-none d-md-block sidebar" defaultActiveKey="/">
-      <div className="sidebar-sticky"></div>
+    <Nav className="sidebar" defaultActiveKey="/">
       <Image id="sidebar-logo" src={logo} />
 
       <SidebarItem href="/">
