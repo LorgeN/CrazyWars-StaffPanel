@@ -3,7 +3,7 @@ import { UserAccessToken } from "./models/user";
 import Cookies, { CookieSetOptions } from "universal-cookie";
 
 const COOKIE_ACCESS_TOKEN = "cw_auth_access";
-const COOKIE_ACCESS_MAX_AGE = 2592000; // Expire after 30 days
+const COOKIE_ACCESS_MAX_AGE = 31536000; // Expire after 30 days
 
 const cookies = new Cookies();
 
@@ -43,10 +43,6 @@ class AuthenticationService {
     }
 
     const response = await client.get("/auth/refresh");
-    if (response.data.access) {
-      this.setAccessToken(response.data.access, remember);
-    }
-
     return response.data;
   }
 
