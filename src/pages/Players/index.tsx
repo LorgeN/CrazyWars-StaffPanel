@@ -54,7 +54,10 @@ const PlayerTable: FunctionComponent = () => {
     PlayerAPI.getAllPlayers(page, perPage, search).then((players) => {
       setPlayers(players.players);
       setMaxPage(players.pages);
-      setPage(Math.min(maxPage, page));
+
+      if (page > maxPage) {
+        setPage(maxPage);
+      }
     });
   }, [page, maxPage, perPage, search]);
 
