@@ -1,4 +1,3 @@
-import { NONAME } from "dns";
 import { client } from "../client";
 import { Player, PlayerPlaytime } from "../models/player";
 
